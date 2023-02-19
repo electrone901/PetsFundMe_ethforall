@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import { CircularProgress, Box, Grid } from '@mui/material'
-// import Header from "../components/header";
-// import Footer from "../components/footer";
-// import { useEffect, useState } from "react";
 // import { useMoralis } from "react-moralis";
 import { ethers } from 'ethers'
 // const PushAPI = require("@pushprotocol/restapi");
@@ -15,86 +12,86 @@ export default function Notifications() {
 
   const channelAddr = '0x80744e7DAaDb9E175B76f1651f564244b2F806D7'
 
-  // async function updateUI() {
-  //     const rawResponse = await fetch("/api/getNotifications");
-  //     const rawJSON = await rawResponse.json();
-  //     console.log({ rawJSON });
+  async function updateUI() {
+      const rawResponse = await fetch("/api/getNotifications");
+      const rawJSON = await rawResponse.json();
+      console.log({ rawJSON });
 
-  //     setNotifications(rawJSON);
-  //     setLoading(false);
-  // }
+      setNotifications(rawJSON);
+      setLoading(false);
+  }
 
-  // useEffect(() => {
-  //     updateUI();
-  //     updateSubscriberStatus();
-  // }, []);
+  useEffect(() => {
+      updateUI();
+      updateSubscriberStatus();
+  }, []);
 
-  // async function optin() {
-  //     await optFunctionality();
+  async function optin() {
+      await optFunctionality();
 
-  //     setLoading(false);
-  // }
+      setLoading(false);
+  }
 
-  // const optFunctionality = async () => {
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const _signer = provider.getSigner();
-  //     try {
-  //         if (subscriberStatus) {
-  //             await PushAPI.channels.unsubscribe({
-  //                 signer: _signer,
-  //                 channelAddress: channelAddr,
-  //                 userAddress: account,
-  //                 env: "staging",
-  //                 onSuccess: () => {
-  //                     console.log("opt out success");
-  //                     setSubscriberStatus(false);
-  //                 },
-  //                 onError: (e) => {
-  //                     console.error("opt out error", e);
-  //                 },
-  //             });
-  //         } else {
-  //             console.log({ account });
-  //             await PushAPI.channels.subscribe({
-  //                 signer: _signer,
-  //                 channelAddress: channelAddr,
-  //                 userAddress: account,
-  //                 env: "staging",
-  //                 onSuccess: () => {
-  //                     console.log("opt in success");
-  //                     setSubscriberStatus(true);
-  //                 },
-  //                 onError: (e) => {
-  //                     console.error("opt in error", e);
-  //                 },
-  //             });
-  //         }
-  //     } catch (e) {
-  //         console.error(e);
-  //     }
-  // };
+  const optFunctionality = async () => {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const _signer = provider.getSigner();
+      try {
+          if (subscriberStatus) {
+              await PushAPI.channels.unsubscribe({
+                  signer: _signer,
+                  channelAddress: channelAddr,
+                  userAddress: account,
+                  env: "staging",
+                  onSuccess: () => {
+                      console.log("opt out success");
+                      setSubscriberStatus(false);
+                  },
+                  onError: (e) => {
+                      console.error("opt out error", e);
+                  },
+              });
+          } else {
+              console.log({ account });
+              await PushAPI.channels.subscribe({
+                  signer: _signer,
+                  channelAddress: channelAddr,
+                  userAddress: account,
+                  env: "staging",
+                  onSuccess: () => {
+                      console.log("opt in success");
+                      setSubscriberStatus(true);
+                  },
+                  onError: (e) => {
+                      console.error("opt in error", e);
+                  },
+              });
+          }
+      } catch (e) {
+          console.error(e);
+      }
+  };
 
-  // const updateSubscriberStatus = async () => {
-  //     try {
-  //         setLoading(true);
-  //         let subscriptions = await PushAPI.user.getSubscriptions({
-  //             user: "eip155:41:" + account,
-  //             env: "staging",
-  //         });
+  const updateSubscriberStatus = async () => {
+      try {
+          setLoading(true);
+          let subscriptions = await PushAPI.user.getSubscriptions({
+              user: "eip155:41:" + account,
+              env: "staging",
+          });
 
-  //         subscriptions = subscriptions.map((sub) => sub.channel.toLowerCase());
+          subscriptions = subscriptions.map((sub) => sub.channel.toLowerCase());
 
-  //         const status = subscriptions.includes(channelAddr.toLowerCase());
+          const status = subscriptions.includes(channelAddr.toLowerCase());
 
-  //         console.log({ status, subscriptions });
+          console.log({ status, subscriptions });
 
-  //         setSubscriberStatus(status);
-  //     } catch (e) {
-  //         console.error(e);
-  //     } finally {
-  //         setLoading(false);
-  //     }
-  // };
+          setSubscriberStatus(status);
+      } catch (e) {
+          console.error(e);
+      } finally {
+          setLoading(false);
+      }
+  };
 
   return (
     <div>

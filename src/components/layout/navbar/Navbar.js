@@ -148,7 +148,7 @@ export const Navbar = ({
 
           <div className="grow" />
 
-          {auth?.isLoggedIn ? (
+          {currentAccount ? (
             <>
               <Button
                 variant="contained"
@@ -160,7 +160,7 @@ export const Navbar = ({
                   fontSize: '1rem',
                 }}
                 endIcon={<VerifiedUserIcon />}
-                onClick={myLogout}
+                // onClick={myLogout}
               >
                 {currentAccount}
               </Button>

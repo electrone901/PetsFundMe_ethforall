@@ -14,6 +14,7 @@ function HomeGallery({
   console.log('HomeGallery n contract', contract)
 
   const [data, setData] = useState([])
+  console.log('🚀 ~ file: HomeGallery.js:17 ~ data', data)
 
   useEffect(() => {
     if (contract) {
@@ -30,6 +31,7 @@ function HomeGallery({
   const getFundraisers = async () => {
     const temp = []
     const res = await contract.getAllFundraisers()
+    console.log('🚀 ~ file: HomeGallery.js:34 ~ getFundraisers ~ res', res)
 
     for (let i = 0; i < res.length; i++) {
       let obj = {}

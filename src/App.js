@@ -9,7 +9,7 @@ import CreateProfile from './components/create-profile/CreateProfile'
 import DonateNFT from './components/donate-nft copy/DonateNFT'
 import CreateLinks from './components/create-links/CreateLinks'
 import MyProfile from './components/home-container/myprofile/MyProfile'
-import Notifications from './components/Notifications'
+import Notifications from './components/notifications/Notifications'
 import Web3Modal from 'web3modal'
 import UAuth from '@uauth/js'
 import ABI from './artifacts/contracts/CommunityPets.sol/CommunityPets.json'
@@ -60,6 +60,7 @@ function App() {
   }
 
   const connectWallet = async () => {
+    console.log('connectWallet')
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
@@ -96,8 +97,6 @@ function App() {
     // setCurrentAccount(getAddress)
     // const getAllProfiles = displayAll()
     // setAllProfiles(getAllProfiles)
-    connectWallet()
-    console.log('auth______', auth)
   }, [])
 
   //   category: "Medical"

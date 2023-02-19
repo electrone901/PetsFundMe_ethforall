@@ -53,7 +53,7 @@ function MyLinks({
 
     try {
       const nfts = await fetch(
-        'https://api.covalenthq.com/v1/137/address/0x11760DB13aE3Aa5Bca17fC7D62172be2A2Ea9C11/balances_v2/?quote-currency=USD&format=JSON&nft=true&no-nft-fetch=false&key=ckey_2d7edb40645d4d74bb59eab31d9',
+        'https://api.covalenthq.com/v1/137/address/0x11760DB13aE3Aa5Bca17fC7D62172be2A2Ea9C11/balances_v2/?quote-currency=USD&format=JSON&nft=true&no-nft-fetch=false&key=ckey_12bd8898b8e24a93b89c36dfc2d',
       )
 
       const allNFTS = await nfts.json()
@@ -61,7 +61,7 @@ function MyLinks({
       const nftPortIsAtFor = allNFTS.data.items[4]
 
       if (allNFTS) {
-        const allData = allNFTS?.data?.items[4]
+        const allData = allNFTS?.data?.items[3]
         console.log(' allData', allData)
         // setAllInfoForBookSwap(allData)
         const onlyNFTs = allData?.nft_data

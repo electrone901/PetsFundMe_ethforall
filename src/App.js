@@ -9,11 +9,14 @@ import CreateProfile from './components/create-profile/CreateProfile'
 import DonateNFT from './components/donate-nft copy/DonateNFT'
 import CreateLinks from './components/create-links/CreateLinks'
 import MyProfile from './components/home-container/myprofile/MyProfile'
-import Notifications from './components/notifications/Notifications'
+import Notifications from './components/Notifications'
 import Web3Modal from 'web3modal'
 import UAuth from '@uauth/js'
 import ABI from './artifacts/contracts/CommunityPets.sol/CommunityPets.json'
+import ABIHyperSpaceDeployed from './artifacts/contracts/CommunityPets.sol/CommunityPetsHyperSpaceDeployed.json'
+import ABIMantleDeployed from './artifacts/contracts/CommunityPets.sol/CommunityPetsMantleDeployed.json'
 import { Auth, useAuth } from '@arcana/auth-react'
+
 const { ethers } = require('ethers')
 
 function App() {
@@ -76,6 +79,9 @@ function App() {
     )
     setContract(contract)
 
+    // hyperspace  0x71f5338032576962c55c31ED4cF4688D1a1c6b1A
+    // Mantle  0x5AAf92530aCA44A63C06a7c014d7610BC7D2D9c7
+
     // const resHasPhase = await hasPhase(address)
     // setHasProfile(resHasPhase)
   }
@@ -128,8 +134,6 @@ function App() {
     )
     console.log('txCount', txCount)
   }
-
-
 
   return (
     <Router>
